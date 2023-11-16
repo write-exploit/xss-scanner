@@ -117,9 +117,9 @@ async def main(site):
                 pass
             
         form = str(forms).split("</form>")
+        global methodumuz
+        methodumuz = ""
         for i in form:
-            print(i)
-            print(sözlük.keys())
             for keyler in sözlük.keys():
                 key = keyler
                 
@@ -127,15 +127,15 @@ async def main(site):
                     i = str(i).split()
                     for q in i:
                         if q.startswith("method"):
-                            global method
+                            
                             if 'GET' in q:
-                                method = "get"
+                                methodumuz = "get"
                             else:
-                                method = "post"
+                                methodumuz = "post"
     
-        #print(method) #yapılan isteğin method'u ---get--- veya ---post--- işleminden biri
+        #print(methodumuz) #yapılan isteğin method'u ---get--- veya ---post--- işleminden biri
         #print(sözlük) #burada data yada params ile göndereceğimiz değerlerin key'leri var, value olarakda javascript kodlarını vericez
-        if method == "get":
+        if methodumuz == "get":
             
             for o in javascript_codes:
                 for anahtar in sözlük.keys():
@@ -147,7 +147,7 @@ async def main(site):
                     if o in params_gönder.text: #eğer javascript kodları sayfanın içeriğindeyse
                         print(colored(f"[+] input alanında açık olma ihtimali var kullanılan script :\n{o}\n","green"))
 
-        if method == "post":
+        if methodumuz == "post":
             
             for o in javascript_codes:
                 for anahtar in sözlük.keys():
