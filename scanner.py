@@ -80,11 +80,6 @@ async def scan_url_for_xss(url):
 
 asyncio.run(scan_url_for_xss(args.site))
     
-    
-#sitede herhangi bir input alanı varmı varsa tarayalımmı ? diye bir soru sor yoksa bura çalışmaz
-#buradaki değerleri büyük küçük şeklindede gönder
-
-
 async def main(site):
 
     async with httpx.AsyncClient() as session:
